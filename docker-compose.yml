@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ./docker/files
+      dockerfile: Dockerfile
+      args:
+        uid: 1000
+    container_name: laravel-app
+    volumes:
+      - ./:/var/www/html
+    # networks:
+    #   - laravel-network
+
+  # db:
+  #   image: mysql:5.7
+  #   container_name: laravel-mysql
+  #   volumes:
+  #     - ./docker/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+  #   ports:
+  #     - 3306:3306
+  #   networks:
+  #     - laravel-network
+  #   command: --max_allowed_packet=115728672
+  #   environment:
+  #     MYSQL_DATABASE: ${DB_DATABASE}
+  #     MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+  #     MYSQL_PASSWORD: ${DB_PASSWORD}
+  #     MYSQL_USER: ${DB_USERNAME}
+  #     SERVICE_TAGS: dev
+  #     SERVICE_NAME: mysql
+
+# #Docker Networks
+# networks:
+#   laravel-network:
+#     driver: bridge
+#     ipam:
+#       driver: default
+#       config:
+#         - subnet: 192.168.221.0/28
